@@ -624,6 +624,60 @@
             background: radial-gradient(ellipse at bottom, #555 0%, #333 45%);
         }
 
+        /* Flavor Selection Styles */
+        .flavor-select-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .flavor-option {
+            display: inline-block;
+        }
+
+        .flavor-option input[type="checkbox"] {
+            display: none; /* Hide the actual checkbox */
+        }
+
+        .flavor-option label {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #eee;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-size: 14px;
+        }
+
+        .flavor-option label:hover {
+            background-color: #ddd;
+            transform: translateY(-2px);
+        }
+
+        .flavor-option input[type="checkbox"]:checked + label {
+            background-color: #9a86fb;
+            color: white;
+            border-color: #9a86fb;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode .flavor-option label {
+            background-color: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .flavor-option label:hover {
+            background-color: #444;
+        }
+
+        body.dark-mode .flavor-option input[type="checkbox"]:checked + label {
+            background-color: #7a6ad4;
+            border-color: #7a6ad4;
+        }
+
     </style>
 </head>
 <body>
@@ -705,7 +759,7 @@
             <img id="modalImage" src="" alt="Product Image" style="width: 100%; max-width: 300px; height: auto; border-radius: 5px; margin-bottom: 15px;">
             <h2 id="modalName">Product Name</h2>
             <p id="modalPrice">Price: $0.00</p>
-            <div id="modalFlavors" style="margin-top: 15px; text-align: left;">
+            <div id="modalFlavors" class="flavor-select-container" style="margin-top: 15px; text-align: left;">
                 <h4>Elige tus sabores (hasta 3):</h4>
             </div>
             <!-- <p id="modalDescription">Some description here...</p> -->
@@ -778,6 +832,7 @@
                 flavors.forEach(flavor => {
                     const flavorId = `flavor-${flavor.replace(/\s+/g, '-')}`;
                     const container = document.createElement('div');
+                    container.classList.add('flavor-option');
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
                     checkbox.id = flavorId;
