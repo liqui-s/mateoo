@@ -760,7 +760,7 @@
             <h2 id="modalName">Product Name</h2>
             <p id="modalPrice">Price: $0.00</p>
             <div id="modalFlavors" class="flavor-select-container" style="margin-top: 15px; text-align: left;">
-                <h4>Elige tus sabores (hasta 3):</h4>
+                <h4>Elige tus sabores:</h4>
             </div>
             <!-- <p id="modalDescription">Some description here...</p> -->
             <a id="modalWhatsAppLink" href="#" target="_blank" class="button" style="margin-top: 10px; display: inline-block;">Contact on WhatsApp</a>
@@ -847,12 +847,14 @@
                     container.appendChild(label);
                     modalFlavors.appendChild(container);
 
-                    checkbox.addEventListener('change', () => {
-                        const checkedCount = modalFlavors.querySelectorAll('input[type="checkbox"]:checked').length;
-                        if (checkedCount > 3) {
-                            alert('Puedes seleccionar hasta 3 sabores.');
-                            checkbox.checked = false;
-                        }
+                    checkbox.addEventListener('change', (e) => {
+                        // Uncheck all other checkboxes
+                        const allCheckboxes = modalFlavors.querySelectorAll('input[type="checkbox"]');
+                        allCheckboxes.forEach(cb => {
+                            if (cb !== e.target) {
+                                cb.checked = false;
+                            }
+                        });
                         updateWhatsAppLink(name, price, whatsappNumber);
                     });
                 });
