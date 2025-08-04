@@ -804,7 +804,7 @@
             let flavorsMessage = "";
             if (checkedFlavors.length > 0) {
                 const selectedFlavors = Array.from(checkedFlavors).map(cb => cb.value).join(', ');
-                flavorsMessage = ` Sabores seleccionados: ${selectedFlavors}`;
+                flavorsMessage = ` Sabor elegido es : ${selectedFlavors}`;
             }
             const message = `Hola, estoy interesado/a en el producto: ${name} - Precio: ${price}.${flavorsMessage}`;
             modalWhatsAppLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
